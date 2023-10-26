@@ -19,7 +19,11 @@ const ArticleList = () => {
         {articleList.map((article) => {
           return (
             <div key={article.article_id} className="article-card">
-              <img className="article-img" src={article.article_img_url}></img>
+              <img
+                className="article-img"
+                src={article.article_img_url}
+                alt="supplementary image relating to the article"
+              ></img>
               <div className="article-info">
                 <Link to={`/articles/${article.article_id}`}>
                   <h2>{article.title}</h2>{" "}

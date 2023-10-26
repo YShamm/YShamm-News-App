@@ -26,7 +26,10 @@ const Article = () => {
           <p>
             Topic: {article.article.topic} | Author: {article.article.author}
           </p>
-          <img src={article.article.article_img_url}></img>
+          <img
+            src={article.article.article_img_url}
+            alt="supplementary image relating to the article"
+          ></img>
           <p>Published: {article.article.created_at}</p>
           <p>{article.article.body}</p>
         </div>
