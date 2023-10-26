@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import "./App.css";
 
 //Components
@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar";
 
 import { Route, Routes } from "react-router-dom";
 import ArticleList from "./components/ArticleList";
+import Article from "./components/Article";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/articles" element={<ArticleList />} />
+        <Route path="/articles/:article_id" element={<Article />} />
       </Routes>
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { getAllArticles } from "../api";
 
@@ -20,12 +21,14 @@ const ArticleList = () => {
             <div key={article.article_id} className="article-card">
               <img className="article-img" src={article.article_img_url}></img>
               <div className="article-info">
-                <h2>{article.title}</h2>
+                <Link to={`/articles/${article.article_id}`}>
+                  <h2>{article.title}</h2>{" "}
+                </Link>
                 <p>Topic: {article.topic}</p>
                 <p>by {article.author}</p>
               </div>
             </div>
-          ); //make the title be a link to the article page
+          ); //make the topic be a link to topic page
         })}
       </div>
     </article>

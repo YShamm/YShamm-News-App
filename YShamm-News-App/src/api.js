@@ -10,3 +10,15 @@ export const getAllArticles = () => {
     return response.data;
   });
 };
+
+export const getArticleById = (article_id) => {
+  return request.get(`api/articles/${article_id}`).then((response) => {
+    console.log(response, "log of res");
+    return response.data;
+  });
+};
+//is :article_id just a back end thing?
+
+// export const getCommentsById = (article_id) => {
+//     return
+// }
