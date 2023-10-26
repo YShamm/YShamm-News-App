@@ -1,4 +1,28 @@
-#root {
+body {
+  background-color: rgb(230, 227, 227);
+}
+
+.list-container {
+  padding: 20px;
+}
+
+.article-card {
+  border: 20px solid rgb(255, 142, 3);
+  padding: 15px;
+  margin: 15px;
+  display: flex;
+  gap: 15px;
+  border-radius: 10px;
+}
+
+.article-img {
+  max-width: 200px;
+  height: auto;
+}
+/* how do i make space between each card? A: w margin*/
+/* does 'max-width:', as opposed to 'width' allow for smaller widths to still exist. the latter stretches them to meet the required width*/
+
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +63,4 @@
 
 .read-the-docs {
   color: #888;
-}
+} */
