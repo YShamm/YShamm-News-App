@@ -25,3 +25,21 @@ export const getCommentsById = (article_id) => {
     return response.data;
   });
 };
+
+export const voteUpArticleById = (article_id) => {
+  return request
+    .patch(`/api/articles/${article_id}`)
+    .send({ inc_votes: 1 })
+    .then((response) => {
+      return response.data;
+    });
+};
+
+export const voteDownArticleById = (article_id) => {
+  return request
+    .patch(`/api/articles/${article_id}`)
+    .send({ inc_votes: -1 })
+    .then((response) => {
+      return response.data;
+    });
+};
