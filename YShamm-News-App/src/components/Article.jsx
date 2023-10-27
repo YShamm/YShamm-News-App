@@ -9,27 +9,49 @@ const Article = () => {
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [articleVotes, setArticleVotes] = useState(0);
+  const [voteUpDisabled, setVoteUpDisabled] = useState(false);
+  const [voteDownDisabled, setVoteDownDisabled] = useState(false);
 
   const { article_id } = useParams(); //we get this from the path in app.jsx?
-
-  const incVote = () => {
-    setArticleVotes(articleVotes + 1);
-    voteUpArticleById(article_id);
-  };
-
-  const decVote = () => {
-    setArticleVotes(articleVotes - 1);
-    voteDownArticleById(article_id);
-  };
 
   useEffect(() => {
     getArticleById(article_id).then((articleData) => {
       console.log(articleData, "log of DATA");
       setArticle(articleData);
-      setIsLoading(false);
       setArticleVotes(articleData.article.votes);
+      setIsLoading(false);
     });
   }, [article_id]);
+
+  const incVote = () => {
+    if (!voteDownDisabled) {
+      setArticleVotes(articleVotes + 1);
+      voteUpArticleById(article_id);
+      setVoteUpDisabled(true);
+      setVoteDownDisabled(false);
+    } else {
+      setArticleVotes(articleVotes + 2);
+      voteUpArticleById(article_id);
+      voteUpArticleById(article_id);
+      setVoteUpDisabled(true);
+      setVoteDownDisabled(false);
+    }
+  };
+
+  const decVote = () => {
+    if (!voteUpDisabled) {
+      setArticleVotes(articleVotes - 1);
+      voteDownArticleById(article_id);
+      setVoteUpDisabled(false);
+      setVoteDownDisabled(true);
+    } else {
+      setArticleVotes(articleVotes - 2);
+      voteDownArticleById(article_id);
+      voteDownArticleById(article_id);
+      setVoteUpDisabled(false);
+      setVoteDownDisabled(true);
+    }
+  };
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -49,8 +71,12 @@ const Article = () => {
             Published: {article.article.created_at} | Votes: {articleVotes}
           </p>
           <p>{article.article.body}</p>
-          <button onClick={incVote}>vote up</button>
-          <button onClick={decVote}>vote up</button>
+          <button onClick={incVote} disabled={voteUpDisabled}>
+            vote up
+          </button>
+          <button onClick={decVote} disabled={voteDownDisabled}>
+            vote down
+          </button>
 
           <Comments article_id={article_id} />
         </div>

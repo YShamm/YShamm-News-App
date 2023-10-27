@@ -28,8 +28,7 @@ export const getCommentsById = (article_id) => {
 
 export const voteUpArticleById = (article_id) => {
   return request
-    .patch(`/api/articles/${article_id}`)
-    .send({ inc_votes: 1 })
+    .patch(`api/articles/${article_id}`, { inc_votes: 1 })
     .then((response) => {
       return response.data;
     });
@@ -37,9 +36,18 @@ export const voteUpArticleById = (article_id) => {
 
 export const voteDownArticleById = (article_id) => {
   return request
-    .patch(`/api/articles/${article_id}`)
-    .send({ inc_votes: -1 })
+    .patch(`api/articles/${article_id}`, { inc_votes: -1 })
     .then((response) => {
+      //   console.log(response, "res in api, vote down");
       return response.data;
     });
 };
+
+// export const postComment = (article_id) => {
+//   return request
+//     .post(`api/articles/${article_id}/comments`)
+//     .send()
+//     .then((response) => {
+//       return response.data;
+//     });
+// };
